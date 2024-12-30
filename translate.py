@@ -24,6 +24,7 @@ print(f"Translating pdf to {language}")
 MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 WEEKDAYS_SHORT = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+WEEKDAYS_INITIALS = ["W & M & T & W & T & F & S & S"]
 WEEK = ["Week"]
 NOTES = ["Notes"]
 NOTE = ["Note"]
@@ -54,6 +55,7 @@ def handle_annual() -> None:
 
     replace = add_identifier(MONTHS, lambda x: "{" + x + "}}")
     replace |= add_identifier(NOTES, lambda x: "{" + x + "}")
+    replace |= add_identifier(WEEKDAYS_INITIALS, lambda x: x)
     for english, spanish in replace.items():
         text = text.replace(english, spanish)
 
@@ -67,6 +69,7 @@ def handle_quarterly() -> None:
 
     replace = add_identifier(MONTHS, lambda x: "{" + x + "}}")
     replace |= add_identifier(NOTES, lambda x: "{" + x + "}")
+    replace |= add_identifier(WEEKDAYS_INITIALS, lambda x: x)
     for english, spanish in replace.items():
         text = text.replace(english, spanish)
 
